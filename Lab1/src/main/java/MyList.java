@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class MyList{
     private int size; // размер списка
 
-    private Object[] list; // список
+    public Object[] list; // список
 
     private int cap = 10; // выделенная память
 
@@ -32,6 +32,7 @@ public class MyList{
          System.arraycopy(this.list, 0, newList, 0, this.size);
          this.list = newList;
     }
+
     @Override
     public String toString() {
         String s = "";
@@ -69,7 +70,11 @@ public class MyList{
         } else return null;
     }
     public Object remove(int index){ // удаление элемента из списка
-        if (index < this.size && this.size != 0) {
+        if (index < 0){
+            System.out.println("Index less than 0");
+            return -1;
+        }
+        if (index < this.size) {
             Object curElem = this.list[index];
             if (size - 1 - index >= 0)
                 System.arraycopy(this.list, index + 1, this.list, index, size - 1 - index);
@@ -79,14 +84,14 @@ public class MyList{
             }
             return curElem;
         } else {
-            return null;
+            return -1;
         }
     }
     public Object get(int index){
         if (index < this.size)
             return this.list[index];
         else
-            return null;
+            return -1;
     }
     public boolean isEmpty(){
         return this.size != 0;
@@ -100,7 +105,8 @@ public class MyList{
     }
     public int indexOF(Object value){ // поиск в списке без помощи Arrays
         for (int i = 0; i < this.size; ++i){
-            if (list[i] == value){
+            System.out.println(this.list[i].toString());
+            if (this.list[i].equals(value)){
                 return i;
             }
         }
@@ -125,9 +131,11 @@ public class MyList{
             Object x = scanner.next();
             li.add(x);
         }
-        if (scanner.hasNext())
-            System.out.println("Вы ввели больше элементов списка!");
         System.out.println(li);
+        System.out.println(li.indexOF(2));
+        Object[] b = {1, 2, 3 ,5};
+        MyList li2 = new MyList(b);
+        //System.out.println(li2.indexOf(2));
     }
 }
 

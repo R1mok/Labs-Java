@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class Node<K, V>{
     private K key;
     private V value;
@@ -9,6 +11,19 @@ class Node<K, V>{
     public Node(K key, V value){
         this.value = value;
         this.key = key;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?, ?> node = (Node<?, ?>) o;
+        return Objects.equals(key, node.key) && Objects.equals(value, node.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, value);
     }
 
     @Override
@@ -26,33 +41,23 @@ class Node<K, V>{
     public K getKey() { return key; }
 }
 public class MyMap {
-    public Node[] nodes;
-    private int size;
-    private int cap = 10;
+    public MyList nodes;
 
     public MyMap() {
-        this.nodes = new Node[this.cap];
-        this.size = 0;
+        this.nodes = new MyList();
     }
     public MyMap(Object key, Object value) {
-        this.nodes = new Node[this.cap];
-        this.nodes[0] = new Node(key, value);
-        this.size = 1;
+        this.nodes = new MyList();
+        this.nodes.add(new Node(key, value));
     }
     public void put (Object key, Object value){
-        if (this.size >= this.cap) {
-            this.cap *= 2;
-            Node[] newNodes = new Node[this.cap];
-            System.arraycopy(this.nodes, 0, newNodes, 0, this.size);
-            this.nodes = newNodes;
-        }
-        this.nodes[this.size] = new Node(key, value);
-        this.size += 1;
+        this.nodes.add(new Node(key, value));
     }
     public Object get(Object key) {
-        for (int i = 0; i < this.size; ++i) {
-            if (this.nodes[i].getKey() == key)
-                return this.nodes[i].getValue();
+        for (int i = 0; i < this.getSize(); ++i) {
+            Node curNode = (Node) this.nodes.get(i);
+            if (curNode.getKey() == key)
+                return curNode.getValue();
         }
         return null;
     }
@@ -63,23 +68,33 @@ public class MyMap {
             return bydefault;
         }
     }
-
+    
+    public Object remove(Object key){
+        Object curValue = this.get(key);
+        if (curValue != null) {
+            Node curNode = new Node(key, curValue);
+            this.nodes.remove(this.nodes.indexOF(curNode));
+            return curNode;
+        }
+        System.out.println("Can`t remove element by key: " + key);
+        return null;
+    }
+    
     @Override
     public String toString() {
-        String out = "";
-        for (int i = 0; i < this.size; ++i){
-            out += this.nodes[i] + " ";
+        String out = "Size: " + this.getSize() + "\nMyMap: \n";
+        for (int i = 0; i < this.getSize(); ++i){
+            Node curNode = (Node) this.nodes.get(i);
+            out += curNode.toString() + '\n';
         }
-        return  "size=" + size + "\n" + out + '\n';
+        return out;
     }
-
-    public int getSize() { return size; }
-    public int getCap() { return cap; }
+    public int getSize() { return this.nodes.getSize(); }
     public static void main(String[] args) {
         MyMap m = new MyMap(1, "str");
+        System.out.println(m.get(1));
+        m.remove(1);
+        m.remove(2);
         System.out.println(m);
-        m.put(3, "get");
-        System.out.println(m);
-        m.put(4, "sda");
     }
 }
