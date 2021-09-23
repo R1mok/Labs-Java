@@ -1,4 +1,9 @@
+import org.w3c.dom.ls.LSInput;
+
+import java.io.IOException;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MyList{
     private int size; // размер списка
@@ -6,6 +11,7 @@ public class MyList{
     private Object[] list; // список
 
     private int cap = 10; // выделенная память
+
     public int getSize() {
         return this.size;
     }
@@ -65,9 +71,8 @@ public class MyList{
     public Object remove(int index){ // удаление элемента из списка
         if (index < this.size && this.size != 0) {
             Object curElem = this.list[index];
-            for (int i = index; i < size - 1; ++i){
-                this.list[i] = this.list[i + 1];
-            }
+            if (size - 1 - index >= 0)
+                System.arraycopy(this.list, index + 1, this.list, index, size - 1 - index);
             this.size -= 1;
             if (this.size * 2 < this.cap){
                 this.cap = this.size + 1;
@@ -105,10 +110,23 @@ public class MyList{
         return indexOF(value) >= 0;
     }
 
-    public static void main(String[] args){
-        Object[] b = {1, 4, 2, 6, 5};
-        MyList li = new MyList(b);
-        li.add(3, 1);
+    public static void main(String[] args) {
+        MyList li = new MyList();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите количество элементов списка: ");
+        int n = 0;
+        if (scanner.hasNextInt()){
+            n = scanner.nextInt();
+        } else {
+            System.out.println("Вы не ввели число.");
+        }
+        System.out.print("Введите список: ");
+        for (int i = 0; i < n; ++i){
+            Object x = scanner.next();
+            li.add(x);
+        }
+        if (scanner.hasNext())
+            System.out.println("Вы ввели больше элементов списка!");
         System.out.println(li);
     }
 }
