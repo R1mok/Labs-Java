@@ -50,8 +50,18 @@ public class MyMap {
         this.nodes = new MyList();
         this.nodes.add(new Node(key, value));
     }
+    public MyMap(Node[] nodes){
+        this.nodes = new MyList();
+        for (Node node : nodes) {
+            this.nodes.add(node);
+        }
+    }
     public void put (Object key, Object value){
-        this.nodes.add(new Node(key, value));
+        if (!this.getValues().contains(value))
+            this.nodes.add(new Node(key, value));
+        else {
+            System.out.println("This value already exist in MyMap!");
+        }
     }
     public Object get(Object key) {
         for (int i = 0; i < this.size(); ++i) {
@@ -120,12 +130,32 @@ public class MyMap {
     }
     public int size() { return this.nodes.getSize(); }
     public boolean isEmpty(){ return this.size() == 0; }
+
     public static void main(String[] args) {
-        MyMap m = new MyMap(1, "str");
-        m.put(2, "num");
-        m.put(null, null);
-        System.out.println(m);
-        m.remove(5);
-        System.out.println(m);
+        MyMap m1 = new MyMap();
+        m1.put(1, "abc");
+        m1.put(2, "abc");
+        System.out.println(m1.remove(1));
+        MyMap m2 = new MyMap(1, "abc");
+        m2.put(4, "bca");
+        System.out.println(m2.keyContains(1));
+        m2.remove(1);
+        System.out.println(m2.isEmpty());
+        m2.remove(4);
+        System.out.println(m2.isEmpty());
+        System.out.println(m2.keyContains(1));
+        Node[] nodes = new Node[5];
+        for (int i = 0; i < 5; ++i){
+            Node curNode = new Node(i, i + 13);
+            nodes[i] = curNode;
+        }
+        MyMap m3 = new MyMap(nodes);
+        System.out.println(m3);
+        m3.remove(3);
+        System.out.println(m3.get(2));
+        System.out.println(m3.getEntries());
+        System.out.println(m3.getValues());
+        System.out.println(m3.getKeys());
+        System.out.println(m3.get(null, 3));
     }
 }

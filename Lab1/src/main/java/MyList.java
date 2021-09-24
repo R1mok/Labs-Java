@@ -1,10 +1,4 @@
-import org.w3c.dom.ls.LSInput;
-
-import java.io.IOException;
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Arrays;
-import java.util.Scanner;
-
 public class MyList{
     private int size; // размер списка
 
@@ -67,7 +61,10 @@ public class MyList{
             Object curItem = this.list[index];
             this.list[index] = value;
             return curItem;
-        } else return null;
+        } else {
+            System.out.println("There is no value by this index");
+            return null;
+        }
     }
     public Object remove(int index){ // удаление элемента из списка
         if (index < 0){
@@ -116,29 +113,27 @@ public class MyList{
     }
 
     public static void main(String[] args) {
-        /*MyList li = new MyList();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите количество элементов списка: ");
-        int n = 0;
-        if (scanner.hasNextInt()){
-            n = scanner.nextInt();
-        } else {
-            System.out.println("Вы не ввели число.");
-        }
-        System.out.print("Введите список: ");
-        for (int i = 0; i < n; ++i){
-            Object x = scanner.next();
-            li.add(x);
-        }
-        System.out.println(li);
-        System.out.println(li.indexOF(2));
-        */
-        Object[] b = {1, 2, 3 ,5};
-        MyList li2 = new MyList();
-        li2.add(null);
-        System.out.println(li2);
-        li2.remove(0);
-        System.out.println(li2);
+        MyList list1 = new MyList();
+        list1.add("abc");
+        list1.add(1);
+        list1.add(1.32);
+        list1.remove(1);
+        System.out.println(list1.isEmpty());
+        System.out.println(list1.get(1));
+        System.out.println(list1.getSize());
+        System.out.println(list1.contains(1.32));
+        System.out.println(list1.set(1.35, 1));
+        System.out.println(list1.contains(1.32));
+        list1.add("fire", 2);
+        System.out.println(list1);
+        System.out.println(list1.indexOF("fire"));
+        String[] ar = {"str", "next", "true"};
+        MyList list2 = new MyList(ar);
+        list2.add("hi");
+        list2.add(null, 4);
+        list2.set(null, 2);
+        list2.add(null);
+        System.out.println(list2);
     }
 }
 
