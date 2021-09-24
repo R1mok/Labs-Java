@@ -54,7 +54,7 @@ public class MyMap {
         this.nodes.add(new Node(key, value));
     }
     public Object get(Object key) {
-        for (int i = 0; i < this.getSize(); ++i) {
+        for (int i = 0; i < this.size(); ++i) {
             Node curNode = (Node) this.nodes.get(i);
             if (curNode.getKey() == key)
                 return curNode.getValue();
@@ -71,30 +71,61 @@ public class MyMap {
     
     public Object remove(Object key){
         Object curValue = this.get(key);
-        if (curValue != null) {
-            Node curNode = new Node(key, curValue);
-            this.nodes.remove(this.nodes.indexOF(curNode));
+        Node curNode = new Node(key, curValue);
+        if (this.nodes.remove(this.nodes.indexOF(curNode)) != null)
+        {
             return curNode;
         }
-        System.out.println("Can`t remove element by key: " + key);
-        return null;
+        else {
+            System.out.println("Can`t remove element by key: " + key);
+            return null;
+        }
     }
-    
+    public boolean keyContains(Object key){
+        return this.get(key) != null;
+    }
+    public MyList getEntries(){
+        MyList entriesList = new MyList();
+        for (int i = 0; i < this.size(); ++i){
+            Node curNode = (Node) this.nodes.list[i];
+            entriesList.add(curNode);
+        }
+        return entriesList;
+    }
+    public MyList getKeys() {
+        MyList keysList = new MyList();
+        for (int i = 0; i < this.size(); ++i){
+            Node curNode = (Node) this.nodes.list[i];
+            keysList.add(curNode.getKey());
+        }
+        return keysList;
+    }
+    public MyList getValues(){
+        MyList valuesList = new MyList();
+        for (int i = 0; i < this.size(); ++i){
+            Node curNode = (Node) this.nodes.list[i];
+            valuesList.add(curNode.getValue());
+        }
+        return valuesList;
+    }
+
     @Override
     public String toString() {
-        String out = "Size: " + this.getSize() + "\nMyMap: \n";
-        for (int i = 0; i < this.getSize(); ++i){
+        String out = "Size: " + this.size() + "\nMyMap: \n";
+        for (int i = 0; i < this.size(); ++i){
             Node curNode = (Node) this.nodes.get(i);
             out += curNode.toString() + '\n';
         }
         return out;
     }
-    public int getSize() { return this.nodes.getSize(); }
+    public int size() { return this.nodes.getSize(); }
+    public boolean isEmpty(){ return this.size() == 0; }
     public static void main(String[] args) {
         MyMap m = new MyMap(1, "str");
-        System.out.println(m.get(1));
-        m.remove(1);
-        m.remove(2);
+        m.put(2, "num");
+        m.put(null, null);
+        System.out.println(m);
+        m.remove(5);
         System.out.println(m);
     }
 }

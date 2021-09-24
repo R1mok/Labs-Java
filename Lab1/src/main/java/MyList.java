@@ -84,7 +84,7 @@ public class MyList{
             }
             return curElem;
         } else {
-            return -1;
+            return null;
         }
     }
     public Object get(int index){
@@ -105,7 +105,6 @@ public class MyList{
     }
     public int indexOF(Object value){ // поиск в списке без помощи Arrays
         for (int i = 0; i < this.size; ++i){
-            System.out.println(this.list[i].toString());
             if (this.list[i].equals(value)){
                 return i;
             }
@@ -117,7 +116,7 @@ public class MyList{
     }
 
     public static void main(String[] args) {
-        MyList li = new MyList();
+        /*MyList li = new MyList();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите количество элементов списка: ");
         int n = 0;
@@ -133,9 +132,13 @@ public class MyList{
         }
         System.out.println(li);
         System.out.println(li.indexOF(2));
+        */
         Object[] b = {1, 2, 3 ,5};
-        MyList li2 = new MyList(b);
-        //System.out.println(li2.indexOf(2));
+        MyList li2 = new MyList();
+        li2.add(null);
+        System.out.println(li2);
+        li2.remove(0);
+        System.out.println(li2);
     }
 }
 
