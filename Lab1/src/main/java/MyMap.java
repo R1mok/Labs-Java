@@ -1,8 +1,8 @@
 import java.util.Objects;
 
-class Node<K, V>{
-    private K key;
-    private V value;
+class Node<K, V>{ // класс для элемента map
+    private K key; // ключ
+    private V value; // значение
 
     public Node(){
         this.key = null;
@@ -14,7 +14,7 @@ class Node<K, V>{
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // сравнение равенства элементов
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Node<?, ?> node = (Node<?, ?>) o;
@@ -41,7 +41,7 @@ class Node<K, V>{
     public K getKey() { return key; }
 }
 public class MyMap {
-    public MyList nodes;
+    public MyList nodes; // список элементов map
 
     public MyMap() {
         this.nodes = new MyList();
@@ -50,20 +50,20 @@ public class MyMap {
         this.nodes = new MyList();
         this.nodes.add(new Node(key, value));
     }
-    public MyMap(Node[] nodes){
+    public MyMap(Node[] nodes){ // конструктор по массиву Nodes
         this.nodes = new MyList();
         for (Node node : nodes) {
             this.nodes.add(node);
         }
     }
-    public void put (Object key, Object value){
+    public void put (Object key, Object value){ // положить в map значение по ключу
         if (!this.getValues().contains(value))
             this.nodes.add(new Node(key, value));
         else {
             System.out.println("This value already exist in MyMap!");
         }
     }
-    public Object get(Object key) {
+    public Object get(Object key) { // получить значение по ключу
         for (int i = 0; i < this.size(); ++i) {
             Node curNode = (Node) this.nodes.get(i);
             if (curNode.getKey() == key)
@@ -71,15 +71,17 @@ public class MyMap {
         }
         return null;
     }
-    public Object get(Object key, Object bydefault){
+    public Object get(Object key, Object bydefault){ // получить значение по ключу, вставить bydefault
         if (key != null){
-            return this.get(key);
+            Object curValue = this.get(key);
+            this.put(key, bydefault);
+            return curValue;
         } else {
             return bydefault;
         }
     }
     
-    public Object remove(Object key){
+    public Object remove(Object key){ // удалить пару по ключу
         Object curValue = this.get(key);
         Node curNode = new Node(key, curValue);
         if (this.nodes.remove(this.nodes.indexOF(curNode)) != null)
@@ -91,10 +93,10 @@ public class MyMap {
             return null;
         }
     }
-    public boolean keyContains(Object key){
+    public boolean keyContains(Object key){ // проверить существует ли значение по ключу
         return this.get(key) != null;
     }
-    public MyList getEntries(){
+    public MyList getEntries(){ // список пар
         MyList entriesList = new MyList();
         for (int i = 0; i < this.size(); ++i){
             Node curNode = (Node) this.nodes.list[i];
@@ -102,7 +104,7 @@ public class MyMap {
         }
         return entriesList;
     }
-    public MyList getKeys() {
+    public MyList getKeys() { // список ключей
         MyList keysList = new MyList();
         for (int i = 0; i < this.size(); ++i){
             Node curNode = (Node) this.nodes.list[i];
@@ -110,7 +112,7 @@ public class MyMap {
         }
         return keysList;
     }
-    public MyList getValues(){
+    public MyList getValues(){ // список значений
         MyList valuesList = new MyList();
         for (int i = 0; i < this.size(); ++i){
             Node curNode = (Node) this.nodes.list[i];
@@ -128,8 +130,8 @@ public class MyMap {
         }
         return out;
     }
-    public int size() { return this.nodes.getSize(); }
-    public boolean isEmpty(){ return this.size() == 0; }
+    public int size() { return this.nodes.getSize(); } // размер map
+    public boolean isEmpty(){ return this.size() == 0; } // проверка пустой ли map
 
     public static void main(String[] args) {
         MyMap m1 = new MyMap();
