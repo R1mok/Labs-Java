@@ -1,13 +1,19 @@
+package ru.mephi;
 import java.util.Objects;
 
+/**
+ * > Класс который реализует ячейку в MyMap
+ * @param <K> ключ
+ * @param <V> параметр
+ */
 class Node<K, V>{ // класс для элемента map
     private K key; // ключ
     private V value; // значение
-
-    public Node(){
-        this.key = null;
-        this.value = null;
-    }
+    /**
+     * Конструктор принимающий ключи и значение
+     * @param key инициализируемый ключ
+     * @param value инициализируемое значение
+     */
     public Node(K key, V value){
         this.value = value;
         this.key = key;
@@ -36,7 +42,6 @@ class Node<K, V>{ // класс для элемента map
     public void setValue(V value){
         this.value = value;
     }
-
     public V getValue() { return value; }
     public K getKey() { return key; }
 }
@@ -123,12 +128,12 @@ public class MyMap {
 
     @Override
     public String toString() {
-        String out = "Size: " + this.size() + "\nMyMap: \n";
+        StringBuilder out = new StringBuilder("Size: " + this.size() + "\nMyMap: \n");
         for (int i = 0; i < this.size(); ++i){
             Node curNode = (Node) this.nodes.get(i);
-            out += curNode.toString() + '\n';
+            out.append(curNode.toString()).append('\n');
         }
-        return out;
+        return out.toString();
     }
     public int size() { return this.nodes.getSize(); } // размер map
     public boolean isEmpty(){ return this.size() == 0; } // проверка пустой ли map
