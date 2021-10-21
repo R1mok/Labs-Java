@@ -41,11 +41,11 @@ public class MergeSort {
         MyList m1 = new MyList();
         int[] a1 = {1, 5, 6, 9, 10, 15, 17};
         int[] a2 = {1, 2, 5, 7, 9, 11, 14};
-        for (int i = 0; i < 5; ++i){
+        for (int i = 0; i < 7; ++i){
             m1.add(a1[i]);
         }
         MyList m2 = new MyList();
-        for (int j = 0; j < 5; ++j){
+        for (int j = 0; j < 7; ++j){
             m2.add(a2[j]);
         }
         MyList m3 = merge(m1, m2);

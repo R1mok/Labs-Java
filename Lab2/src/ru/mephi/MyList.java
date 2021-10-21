@@ -31,21 +31,21 @@ public class MyList{
 
     @Override
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (int i = 0; i < size; ++i){
-            s += list[i];
-            s+= " ";
+            s.append(list[i]);
+            s.append(" ");
         }
         return "size : " + size + "\nlist : " + s;
     }
-    public void add(int value) { // добавлению по значению
+    public void add(int value) { // добавлению по значению // -1 index
         if (this.size >= this.cap) {
             this.IncreaseCap();
         }
         this.list[this.size] = value;
         this.size += 1;
     }
-    public void add (int value, int index){ // добавлению по значению и индексу
+    public void add (int value, int index){ // добавлению по значению и индексу //-1 index
         if (index > this.size){
             this.add(value);
             return;
@@ -58,7 +58,7 @@ public class MyList{
         System.arraycopy(this.list, index , newList, index + 1, this.size - index);
         this.list[index] = value;
     }
-    public int set(int value, int index){ // замена элемента на value по индексу
+    public int set(int value, int index){ // замена элемента на value по индексу //-1
         if (index < this.size) {
             int curItem = this.list[index];
             this.list[index] = value;
@@ -93,8 +93,8 @@ public class MyList{
             return -1;
     }
     public boolean isEmpty(){
-        return this.size != 0;
-    }
+        return this.size == 0;
+    } // uses
 
     public int indexOf(int value){ // поиск в списке с помощью java.utils.Arrays
         int key =  Arrays.binarySearch(list, 0, this.size, value);

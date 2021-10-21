@@ -1,4 +1,5 @@
 package ru.mephi;
+
 import java.util.Arrays;
 public class MyList{
     private int size; // размер списка
