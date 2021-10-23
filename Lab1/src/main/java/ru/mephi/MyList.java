@@ -31,10 +31,10 @@ public class MyList{
 
     @Override
     public String toString() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (int i = 0; i < size; ++i){
-            s += list[i];
-            s+= " ";
+            s.append(list[i]);
+            s.append(" ");
         }
         return "size : " + size + "\nlist : " + s;
     }
@@ -46,6 +46,10 @@ public class MyList{
         this.size += 1;
     }
     public void add (Object value, int index){ // добавлению по значению и индексу
+        if (index < 0){
+            System.out.println("Index can't be less than 0");
+            return;
+        }
         if (index > this.size){
             this.add(value);
             return;
@@ -59,6 +63,10 @@ public class MyList{
         this.list[index] = value;
     }
     public Object set(Object value, int index){ // замена элемента на value по индексу
+        if (index < 0){
+            System.out.println("Index can't be less than 0");
+            return null;
+        }
         if (index < this.size) {
             Object curItem = this.list[index];
             this.list[index] = value;
@@ -70,8 +78,12 @@ public class MyList{
     }
     public Object remove(int index){ // удаление элемента из списка
         if (index < 0){
-            System.out.println("Index less than 0");
+            System.out.println("Index can't be less than 0");
             return -1;
+        }
+        if (isEmpty()){
+            System.out.println("List is empty");
+            return null;
         }
         if (index < this.size) {
             Object curElem = this.list[index];
@@ -87,13 +99,17 @@ public class MyList{
         }
     }
     public Object get(int index){
+        if (index < 0){
+            System.out.println("Index can't be less than 0");
+            return null;
+        }
         if (index < this.size)
             return this.list[index];
         else
             return -1;
     }
     public boolean isEmpty(){
-        return this.size != 0;
+        return this.size == 0;
     }
 
     public int indexOf(Object value){ // поиск в списке с помощью java.utils.Arrays
@@ -116,26 +132,9 @@ public class MyList{
 
     public static void main(String[] args) {
         MyList list1 = new MyList();
-        list1.add("abc");
-        list1.add(1);
-        list1.add(1.32);
-        list1.remove(1);
-        System.out.println(list1.isEmpty());
-        System.out.println(list1.get(1));
-        System.out.println(list1.getSize());
-        System.out.println(list1.contains(1.32));
-        System.out.println(list1.set(1.35, 1));
-        System.out.println(list1.contains(1.32));
-        list1.add("fire", 2);
+        list1.add("abc", 1);
+        list1.set("bca", -1);
         System.out.println(list1);
-        System.out.println(list1.indexOF("fire"));
-        String[] ar = {"str", "next", "true"};
-        MyList list2 = new MyList(ar);
-        list2.add("hi");
-        list2.add(null, 4);
-        list2.set(null, 2);
-        list2.add(null);
-        System.out.println(list2);
     }
 }
 
