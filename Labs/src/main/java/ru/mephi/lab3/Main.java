@@ -27,5 +27,42 @@ public class Main {
         p1.stream()
                 .filter(e -> e.getRole() == Role.STAFF)
                 .forEach(accountant::payPremium);
+        System.out.println("====Home work====");
+
+        // Consumer выводит Role Employee
+        System.out.println("====Consumer====");
+        Consumer<Employee> roleConsumer = t ->
+                System.out.println("First employee role is: " + t.getRole());
+
+        roleConsumer.getRole(p1.get(0));
+        // Function возвращает номер телефона Employee
+        System.out.println("====Function====");
+        Function<Employee, String> numberFunction =
+                t-> t.getPhone().toString();
+
+        System.out.println("Number of first employee is: " + numberFunction.getNumber(p1.get(0)));
+        // Supplier добавляет меня
+        System.out.println("====Supplier====");
+        Supplier<Employee> employeeSupplier =
+                () -> new Employee.EmployeeBuilder()
+                        .setGender(Gender.MALE)
+                        .setPhone("88005553535")
+                        .setGivenName("Anton")
+                        .setSurName("Mikhalev")
+                        .setAddress("Moskvorechie 2k2")
+                        .setAge(20)
+                        .setRole(Role.STAFF)
+                        .build();
+        p1.add(employeeSupplier.addMe());
+        p1.stream()
+                .filter(e -> e.getSurName() == "Mikhalev")
+                .forEach(employee -> System.out.println("My name is " + employee.getGivenName()));
+        // BiPredicate проверяет является ли employee мужчиной|женщиной
+        System.out.println("====BiPredicate====");
+        BiPredicate<Employee, Gender> employeeGender =
+                (t, s) -> t.getGender().equals(s);
+        System.out.println("Is " + p1.get(0).getSurName() + " a " + p1.get(0).getGender().toString() + "?");
+        System.out.println(employeeGender.isMale(p1.get(0), Gender.MALE));
     }
+
 }
