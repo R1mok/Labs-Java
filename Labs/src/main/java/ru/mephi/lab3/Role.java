@@ -1,6 +1,6 @@
 package ru.mephi.lab3;
 
-enum Role {
+public enum Role {
     STAFF(0.1d),
     MANAGER(0.2d),
     EXECUTIVE(0.3d);
