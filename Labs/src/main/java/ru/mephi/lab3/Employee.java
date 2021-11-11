@@ -15,7 +15,6 @@ public class Employee {
     private String city;
     private String state;
     private int code;
-    private int salary;
 
     @Override
     public String toString() {
@@ -32,11 +31,7 @@ public class Employee {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", code=" + code +
-                ", salary=" + salary + '\'' +
                 '}';
-    }
-
-    private Employee() {
     }
 
     public Employee(EmployeeBuilder employeeBuilder) {
@@ -58,7 +53,6 @@ public class Employee {
         this.city = employeeBuilder.city;
         this.state = employeeBuilder.state;
         this.code = employeeBuilder.code;
-        this.salary = employeeBuilder.salary;
     }
 
     public static class EmployeeBuilder {
@@ -74,84 +68,64 @@ public class Employee {
         protected String city = "Moscow";
         protected String state = "Moscow";
         protected int code = 777;
-        protected int salary = 0;
 
         public EmployeeBuilder() {
             super();
         }
-
-        public EmployeeBuilder setGivenName(String givenName) {
+        public EmployeeBuilder setGivenName(String givenName){
             this.givenName = givenName;
             return this;
         }
-
-        public EmployeeBuilder setSurName(String surName) {
+        public EmployeeBuilder setSurName(String surName){
             this.surName = surName;
             return this;
         }
-
-        public EmployeeBuilder setAge(int age) {
+        public EmployeeBuilder setAge(int age){
             this.age = age;
             return this;
         }
-
-        public EmployeeBuilder setGender(Gender gender) {
+        public EmployeeBuilder setGender(Gender gender){
             this.gender = gender;
             return this;
         }
-
-        public EmployeeBuilder setSalary(int salary) {
-            this.salary = salary;
-            return this;
-        }
-
-        public EmployeeBuilder setRole(Role role) {
+        public EmployeeBuilder setRole(Role role){
             this.role = role;
             return this;
         }
-
-        public EmployeeBuilder setDept(String dept) {
+        public EmployeeBuilder setDept(String dept){
             this.dept = dept;
             return this;
         }
-
-        public EmployeeBuilder setEMail(String eMail) {
+        public EmployeeBuilder setEMail(String eMail){
             this.eMail = eMail;
             return this;
         }
-
-        public EmployeeBuilder setPhone(String phone) {
+        public EmployeeBuilder setPhone(String phone){
             this.phone = phone;
             return this;
         }
-
-        public EmployeeBuilder setAddress(String address) {
+        public EmployeeBuilder setAddress(String address){
             this.address = address;
             return this;
         }
-
-        public EmployeeBuilder setCity(String city) {
+        public EmployeeBuilder setCity(String city){
             this.city = city;
             return this;
         }
-
-        public EmployeeBuilder setState(String state) {
+        public EmployeeBuilder setState(String state){
             this.state = state;
             return this;
         }
-
-        public EmployeeBuilder setCode(int code) {
+        public EmployeeBuilder setCode(int code){
             this.code = code;
             return this;
         }
-
-        public Employee build() {
+        public Employee build(){
             Employee emp = null;
-            if (givenName != null || surName != null) {
+            if (givenName != null || surName != null)
                 emp = new Employee(this);
-            } else {
+            else
                 System.out.println("Can't build object Employee");
-            }
             return emp;
         }
     }
@@ -172,7 +146,9 @@ public class Employee {
         return gender;
     }
 
-    public int getAge() {return age;}
+    public int getAge() {
+        return age;
+    }
 
     public int getCode() {
         return code;
@@ -202,16 +178,7 @@ public class Employee {
         return state;
     }
 
-    public int getSalary() { return salary; }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-    public void setSalary(int salary){
-        this.salary = salary;
-    }
-
-    public static List<Employee> createShortList() {
+    public static List<Employee> createShortList(){
         List<Employee> list = new ArrayList<>();
         list.add(
                 new EmployeeBuilder()
@@ -221,7 +188,6 @@ public class Employee {
                         .setRole(Role.STAFF)
                         .setPhone("88334412323")
                         .setDept("Developing")
-                        .setSalary(300)
                         .build()
         );
         list.add(
@@ -235,7 +201,6 @@ public class Employee {
                         .setEMail("royalfamily@gmail.com")
                         .setRole(Role.EXECUTIVE)
                         .setDept("HR")
-                        .setSalary(500)
                         .build()
         );
         list.add(
@@ -247,7 +212,6 @@ public class Employee {
                         .setPhone("88005553535")
                         .setRole(Role.STAFF)
                         .setDept("Developing")
-                        .setSalary(1000)
                         .build()
         );
         list.add(
@@ -261,7 +225,6 @@ public class Employee {
                         .setCity("Los Angeles")
                         .setState("California")
                         .setCode(129)
-                        .setSalary(250)
                         .build()
         );
         list.add(
@@ -273,7 +236,6 @@ public class Employee {
                         .setPhone("89123228334")
                         .setRole(Role.MANAGER)
                         .setDept("PR")
-                        .setSalary(300)
                         .build()
         );
         list.add(
@@ -300,7 +262,6 @@ public class Employee {
         );
         return list;
     }
-
     public static void main(String[] args) {
         Employee Person1 = new EmployeeBuilder().setGivenName("Andrew").setGender(Gender.MALE).build();
         System.out.println(Person1);
