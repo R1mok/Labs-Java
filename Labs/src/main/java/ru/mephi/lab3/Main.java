@@ -1,20 +1,19 @@
 package ru.mephi.lab3;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.BiPredicate;
-import java.util.function.Supplier;
+import java.util.function.*;
+import java.util.stream.Stream;
+import java.lang.Comparable;
 
 public class Main {
     public static void main(String[] args) {
         List<Employee> p1 = Employee.createShortList();
         Accountant accountant = new Accountant();
-        //System.out.println(p1);
         System.out.println("====Next stream====");
         p1.stream()
-                .filter(e -> e.getGender() == Gender.FEMALE)
+                .filter(e -> e.getGender().equals(Gender.FEMALE))
                 .forEach(accountant::payPremium);
         System.out.println("====Next stream====");
         p1.stream()
@@ -26,11 +25,11 @@ public class Main {
                 .forEach(accountant::payPremium);
         System.out.println("====Next stream====");
         p1.stream()
-                .filter(e -> e.getRole() == Role.MANAGER)
+                .filter(e -> e.getRole().equals(Role.MANAGER))
                 .forEach(accountant::paySalary);
         System.out.println("====Next stream====");
         p1.stream()
-                .filter(e -> e.getRole() == Role.STAFF)
+                .filter(e -> e.getRole().equals(Role.STAFF))
                 .forEach(accountant::payPremium);
         System.out.println("====Home work====");
 
@@ -40,11 +39,11 @@ public class Main {
                 System.out.println("First employee role is: " + t.getRole());
 
         roleConsumer.accept(p1.get(0));
-        // Function возвращает номер телефона Employee
+        //Function возвращает номер телефона Employee
         System.out.println("====Function====");
         Function<Employee, String> numberFunction =
                 Employee::getPhone;
-
+        //
         System.out.println("Number of first employee is: " + numberFunction.apply(p1.get(0)));
         // Supplier добавляет меня
         System.out.println("====Supplier====");
@@ -66,8 +65,11 @@ public class Main {
         System.out.println("====BiPredicate====");
         BiPredicate<Employee, Gender> employeeGender =
                 (t, s) -> t.getGender().equals(s);
+        p1.stream().filter(e -> employeeGender.test(e,Gender.FEMALE)).forEach(System.out::println);
+
         System.out.println("Is " + p1.get(0).getSurName() + " a " + p1.get(0).getGender().toString() + "?");
         System.out.println(employeeGender.test(p1.get(0), Gender.MALE));
+
     }
 
 }
