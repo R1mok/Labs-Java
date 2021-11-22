@@ -14,15 +14,15 @@ public class OutOfMemoryExample {
         }
     }
     public static void main(String[] args) {
-       try{
-           crash();
-       } catch (OutOfMemoryError e){
-           System.out.println("Catch OutOfMemoryError");
-       }
-       try {
-           calculateFactorial(1);
-       } catch (StackOverflowError e){
-           System.out.println("Catch StackOverflowError");
-       }
+        try{
+            crash();
+        } catch (OutOfMemoryError e){
+            System.out.println("Catch OutOfMemoryError");
+        }
+        try {
+            calculateFactorial(1);
+        } catch (StackOverflowError e){
+            System.out.println("Catch StackOverflowError");
+        }
     }
 }
