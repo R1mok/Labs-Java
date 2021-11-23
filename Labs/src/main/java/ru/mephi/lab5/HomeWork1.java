@@ -3,10 +3,7 @@ package ru.mephi.lab5;
 import java.time.*;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.*;
 
 
 public class HomeWork1 {
@@ -49,20 +46,13 @@ public class HomeWork1 {
 
         System.out.println("=================");
         // School semester
-        MonthDay.of(Month.SEPTEMBER, 8);
-        int whichYear = 2021; // укажите год, в котором нужно посмотреть начало и длительность семестра
-        LocalDate startSem = LocalDate.of(whichYear, Month.SEPTEMBER, 8);
-        TemporalAdjuster startSemester = temporal -> {
-            while (temporal.get(ChronoField.DAY_OF_WEEK) != 2) {
-                temporal = temporal.plus(Period.ofDays(1));
-            }
-            return temporal;
-        };
-        LocalDate startOfSem = (LocalDate) startSemester.adjustInto(startSem);
+        TemporalAdjuster temp = TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.TUESDAY);
+        LocalDate startOfSem = LocalDate.of(2021, 9, 1);
+        startOfSem = startOfSem.with(temp);
         System.out.println(startOfSem);
         TemporalAdjuster daysInSemester = temporal -> {
             int days = 0;
-            LocalDate vacation = LocalDate.of(startOfSem.getYear() + 1, Month.JUNE, 25);
+            LocalDate vacation = LocalDate.of(2022, Month.JUNE, 24);
             while (!temporal.equals(vacation)) {
                 if ((temporal.get(ChronoField.MONTH_OF_YEAR) == 12 || temporal.get(ChronoField.MONTH_OF_YEAR) == 3) && temporal.get(ChronoField.DAY_OF_MONTH) <= 14){
                     temporal = temporal.plus(Period.ofWeeks(2));
