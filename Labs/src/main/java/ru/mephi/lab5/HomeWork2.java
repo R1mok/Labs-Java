@@ -55,6 +55,6 @@ public class HomeWork2 {
         ZonedDateTime flight123ArriveBOS = flight123ArriveSFO.withZoneSameInstant(BOS);
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd.MM hh:mm a");
         System.out.println("What day and time does the flight arrive in Boston? " + flight123ArriveBOS.format(formatter2));
-        System.out.println("What happened? Some magic idk");
+        System.out.println("What happened? Time shift");
     }
 }

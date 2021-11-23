@@ -1,0 +1,65 @@
+Задание 1:
+    // Abe Lincoln's Birthday: February 12, 1809, died April 15, 1855
+    //   How old when he died?
+    //   How many days did he live?  
+
+    
+    // Bennedict Cumberbatch, July 19, 1976
+    //   Born in a leap year?
+    //   How many days in the year he was born?
+    //   How many decades old is he?
+    //   What was the day of the week on his 21st birthday?
+    
+    
+    // Train departs Boston at 1:45PM and arrives New York 7:25PM
+    //   How many minutes long is the train ride?
+    //   If the train was delayed 1 hour 19 minutes, what is the actual arrival time?
+    
+    
+    // Flight: Boston to Miami, leaves March 24th 9:15PM. Flight time is 4 hours 15 minutes
+    //   When does it arrive in Miami?
+    //   When does it arrive if the flight is delays 4 hours 27 minutes?
+    
+    
+    // School semester starts the second Tuesday of September of this year.
+    //   Hint: Look at the TemporalAdjusters class
+    //   What is the date?
+    //   School summer vacation starts June 25th
+    //   Assuming:
+    //     *  Two weeks off in December
+    //     *  Two other vacation weeks
+    //     *  School is taught Monday - Friday
+    //   How many days of school are there?
+    //   Hint: keep track of the short weeks also
+    
+    
+    // A meeting is schedule for 1:30 PM next Tuesday. If today is Tuesday, assume it is today.
+    //   What is the time of the week's meetings?
+
+
+Задание 2
+
+
+    // Using the following information:
+    //   * Use America/New_York as the time zone for Boston Logan Airport(BOS).
+    //   * Use America/Los_Angeles as the time zone for San Francisco Airport (SFO).
+    //   * Use Asia/Calcutta as the time zone for Bangalore's Bengaluru International Airport (BLR)
+
+
+    // Flight 123, San Francisco to  Boston, leaves SFO at 10:30 PM June 13, 2014
+    // The flight is 5 hours 30 minutes
+    //   What is the local time in Boston when the flight takes off?
+    //   What is the local time at Boston Logan airport when the flight arrives?
+    //   What is the local time in San Francisco when the flight arrives?
+
+
+    // Flight 456, San Francisco to Bangalore, India, leaves SFO at Saturday, 10:30 PM June 28, 2014
+    // The flight time is 22 hours
+    //   Will the traveler make a meeting in Bangalore Monday at 9 AM local time?
+    //   Can the traveler call her husband at a reasonable time when she arrives?
+
+
+    // Flight 123, San Francisco to Boston, leaves SFO at 10:30 PM Saturday, November 1st, 2014
+    // Flight time is 5 hours 30 minutes.
+    //   What day and time does the flight arrive in Boston?
+    //   What happened?

@@ -1,0 +1,11 @@
+Смоделировать ситуацию, в которой программа будет выбрасывать следующее исключение, а вы должны его обработать при помощи try-catch:
+1.ArrayIndexOutOfBoundsException
+2.FileNotFoundException
+3.NullPointerException
+4.IOException
+5.ClassCastException
+6.ArithmeticException
+
+Вызвать выброс:
+1.OutOfMemoryError
+2.StackOverflowError

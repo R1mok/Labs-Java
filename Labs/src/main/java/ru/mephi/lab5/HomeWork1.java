@@ -49,9 +49,9 @@ public class HomeWork1 {
 
         System.out.println("=================");
         // School semester
-        MonthDay.of(Month.SEPTEMBER, 7);
+        MonthDay.of(Month.SEPTEMBER, 8);
         int whichYear = 2021; // укажите год, в котором нужно посмотреть начало и длительность семестра
-        LocalDate startSem = LocalDate.of(whichYear, Month.SEPTEMBER, 7);
+        LocalDate startSem = LocalDate.of(whichYear, Month.SEPTEMBER, 8);
         TemporalAdjuster startSemester = temporal -> {
             while (temporal.get(ChronoField.DAY_OF_WEEK) != 2) {
                 temporal = temporal.plus(Period.ofDays(1));
