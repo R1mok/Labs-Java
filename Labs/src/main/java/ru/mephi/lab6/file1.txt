@@ -1,0 +1,6 @@
+string
+abc
+abcd
+abc
+abc
+abcd
