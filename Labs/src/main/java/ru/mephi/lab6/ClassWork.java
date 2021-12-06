@@ -2,8 +2,10 @@ package ru.mephi.lab6;
 
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 
@@ -64,7 +66,7 @@ public class ClassWork {
         }
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         // first task
         File file1 = new File("Labs/src/main/java/ru/mephi/lab6/file1.txt");
         ClassWork work1 = new ClassWork(file1);
@@ -81,10 +83,16 @@ public class ClassWork {
         items.add(new Item(1, "milk", 2.3));
         ShoppingCart sc = new ShoppingCart(1, 2, 30, items);
         sc.writeObject();
+        try {
 
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
         // deserialize
         ShoppingCart sc1 = new ShoppingCart();
         sc1.readObject();
-        System.out.println(sc1);
+        System.out.println(sc1.getCurTime());
+        System.out.println(LocalDateTime.now());
     }
 }

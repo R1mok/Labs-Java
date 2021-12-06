@@ -10,9 +10,7 @@ public class ShoppingCart implements Serializable {
     private ArrayList<Item> items;
     private int itemCount;
     private transient double cartTotal;
-
-    private void recountCartTotal() {
-    }
+    private LocalDateTime curTime;
 
     public ShoppingCart() {
     }
@@ -22,6 +20,10 @@ public class ShoppingCart implements Serializable {
         this.itemCount = itemCount;
         this.cartTotal = cartTotal;
         this.items = items;
+    }
+
+    public LocalDateTime getCurTime() {
+        return curTime;
     }
 
     @Override
@@ -37,6 +39,7 @@ public class ShoppingCart implements Serializable {
     public void writeObject() throws IOException {
         LocalDateTime curentDataTime = LocalDateTime.now();
         FileOutputStream outputStream = new FileOutputStream("Labs/src/main/java/ru/mephi/lab6/serialize");
+        this.curTime = LocalDateTime.now();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
         objectOutputStream.writeObject(this);
         objectOutputStream.close();
@@ -49,6 +52,7 @@ public class ShoppingCart implements Serializable {
         this.cartID = scSer.cartID;
         this.itemCount = scSer.itemCount;
         this.items = scSer.items;
+        this.curTime = scSer.curTime;
         this.cartTotal = 30;
     }
 }
