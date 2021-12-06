@@ -1,4 +1,4 @@
-package ru.mephi.lab6;
+package ru.mephi.lab6.classwork;
 
 import java.io.Serializable;
 
